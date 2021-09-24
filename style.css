@@ -1,0 +1,19 @@
+#formInput{
+    display:inline;
+}
+
+.showCity{
+    border-style: solid;
+    margin:5rem;
+}
+
+.weatherCards{
+    height: 100px;
+}
+
+.weatherCards div{
+    background-color:red;
+}
+.searchHist{
+    margin:5rem;
+}

@@ -21,14 +21,21 @@
         <div class="row justify-content-center">
             <h2>Search for a city</h2>
         </div>
-        <div class="form-group" id="formInput">
-            <!-- <label for="exampleInputEmail1">Email address</label> -->
-            <input class="form-control" placeholder="I want the weather of...">
+        <div class="form-group">
+            <input class="form-control" id=formInput placeholder="I want the weather of...">
             <small class="form-text text-muted">Your location isn't shared with anyone else</small>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button onclick="getWeatherData();" type="submit" class="btn btn-primary">Submit</button>
         </div>
         <div class="row .col-m-6 showCity id=showCity">
-            <p>here is some data</p>
+            <ul>
+                <li> Current temp:<span id="temp"></span></li>
+                <li> Feels like:<span id="feelsLike"></span></li>
+                <!-- <li> Today's max temp:<span id="maxTemp"></span></li>
+                <li> Today's min temp:<span id="minTemp"></span></li> -->
+                <li>Humidity:<span id="humid"></span></li>
+                <li>Wind Speed:<span id="windsp"></span></li>
+                <li>UV Index:<span id="uvi"></span></li>
+            </ul>
         </div>
         <div class="row weatherCards">
             <div class="col mx-1" id="wc1">1</div>

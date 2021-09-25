@@ -12,7 +12,9 @@
 }
 
 .weatherCards div{
-    background-color:red;
+    background-color:lightblue;
+    border-radius:15px;
+    /* border-style:solid; */
 }
 .searchHist{
     margin:5rem;

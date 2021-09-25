@@ -6,8 +6,12 @@ var humidVal = document.querySelector("#humid");
 var windspVal = document.querySelector("#windsp");
 var uviVal = document.querySelector("#uvi");
 var feelsVal = document.querySelector("#feelsLike");
-var maxTempval = document.querySelector("#maxTemp");
-var minTempval = document.querySelector("#minTemp");
+var wc1Val = document.querySelector("#wc1");
+var wc2Val = document.querySelector("#wc2");
+var wc3Val = document.querySelector("#wc3");
+var wc4Val = document.querySelector("#wc4");
+var wc5Val = document.querySelector("#wc5");
+
 
 async function getWeatherData() {
     //if there's a comma then the user has done an explicit search, otherwise put in filter for country au (e.g. melbourne, sydney)
@@ -32,7 +36,28 @@ async function getWeatherData() {
     humidVal.textContent = oneCall.current.humidity
     windspVal.textContent = oneCall.current.wind_speed
     uviVal.textContent = oneCall.current.uvi
+
+    var humid = oneCall['daily'][0].humidity.toFixed(1);
+    var temp = oneCall['daily'][0].temp['day'].toFixed(1);
+    var wspeed = oneCall['daily'][0].wind_speed.toFixed(1);
+    var icon = oneCall['daily'][0].weather['icon'];
+    var iconAltText = oneCall['daily'][0].weather['description'];
+
+    wc1Val.textContent = oneCall['daily'][0].temp['day'];  //temp, wind speed and h
+
+
+    // wc2Val.textContent = oneCall['daily'][1].temp['day'];
+    // wc3Val.textContent = oneCall['daily'][2].temp['day'];
+    // wc4Val.textContent = oneCall['daily'][3].temp['day'];
+    // wc5Val.textContent = oneCall['daily'][4].temp['day'];
+
+    // wc2Val.textContent = fivedayforecast.current.humidity
+
+    // windspVal.textContent = oneCall.current.wind_speed
+    // uviVal.textContent = oneCall.current.uvi
 }
+
+
 
 
 //json

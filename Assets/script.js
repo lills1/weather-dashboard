@@ -1,5 +1,7 @@
 
 var APIkey = config.MY_KEY
+var WeatherCardsEl = document.querySelector(".weatherCards");
+var cityName = document.querySelector("#city");
 var formEl = document.querySelector("#formInput");
 var tempVal = document.querySelector("#temp");
 var humidVal = document.querySelector("#humid");
@@ -35,19 +37,24 @@ async function getWeatherData() {
     // minTempval.textContent = oneCall.current.min + " Celsius"
     humidVal.textContent = oneCall.current.humidity
     windspVal.textContent = oneCall.current.wind_speed
-    uviVal.textContent = oneCall.current.uvi
+    uviVal.textContent = oneCall.current.uvi;
+    htmlContent = "";
 
     for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
 
         var humid = oneCall['daily'][i].humidity.toFixed(1);
         var temp = oneCall['daily'][i].temp['day'].toFixed(1);
         var wspeed = oneCall['daily'][i].wind_speed.toFixed(1);
-        var icon = oneCall['daily'][i].weather['icon'];
-        var iconAltText = oneCall['daily'][i].weather['description'];
-        htmlContent = "";
+        var icon = "http://openweathermap.org/img/w/" + oneCall['daily'][i]['weather'][0]['icon'] + ".png";
+        var iconAltText = oneCall['daily'][i]['weather'][0]['description'];
+        htmlContent += `<div class="col mx-1"> <img src="${icon}" alt="${iconAltText}"/> Temp: ${temp} Windspeed ${wspeed} Humidity ${humid} <span id="wc${i}"></span> </div>`;
     }
 
-    wc1Val.textContent = oneCall['daily'][0].temp['day'];
+    cityName.innerHTML = formEl.value;
+
+    WeatherCardsEl.innerHTML = htmlContent;
+
+    // wc1Val.textContent = oneCall['daily'][0].temp['day'];
 
     //temp, wind speed and h
 

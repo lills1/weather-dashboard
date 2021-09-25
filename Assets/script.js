@@ -37,13 +37,19 @@ async function getWeatherData() {
     windspVal.textContent = oneCall.current.wind_speed
     uviVal.textContent = oneCall.current.uvi
 
-    var humid = oneCall['daily'][0].humidity.toFixed(1);
-    var temp = oneCall['daily'][0].temp['day'].toFixed(1);
-    var wspeed = oneCall['daily'][0].wind_speed.toFixed(1);
-    var icon = oneCall['daily'][0].weather['icon'];
-    var iconAltText = oneCall['daily'][0].weather['description'];
+    for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
 
-    wc1Val.textContent = oneCall['daily'][0].temp['day'];  //temp, wind speed and h
+        var humid = oneCall['daily'][i].humidity.toFixed(1);
+        var temp = oneCall['daily'][i].temp['day'].toFixed(1);
+        var wspeed = oneCall['daily'][i].wind_speed.toFixed(1);
+        var icon = oneCall['daily'][i].weather['icon'];
+        var iconAltText = oneCall['daily'][i].weather['description'];
+        htmlContent = "";
+    }
+
+    wc1Val.textContent = oneCall['daily'][0].temp['day'];
+
+    //temp, wind speed and h
 
 
     // wc2Val.textContent = oneCall['daily'][1].temp['day'];

@@ -13,7 +13,7 @@
 <body>
     <header class="jumbotron">
         <div class="row justify-content-center">
-            <h1 class="display-2">Weather app</h1>
+            <h1 class="display-3">Weather app</h1>
         </div>
         <div class="lead row justify-content-center">
             <p>Check the weather of any city</p>
@@ -26,8 +26,12 @@
         </div>
         <div class="form-group">
             <input class="form-control" id=formInput placeholder="I want the weather of...">
-            <small class="form-text text-muted">Your location isn't shared with anyone else</small>
-            <button type="submit" id="searchBtn" class="btn btn-primary">Submit</button>
+            <div class="text-center pt-2">
+                <small class="form-text text-muted">Your location isn't shared with anyone else</small>
+                <div class="pt-3">
+                    <button type="submit" id="searchBtn" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </div>
         <div class=" h3 row justify-content-center" id="city"> </div>
         <div class="row .col-m-6 showCity id=showCity">
@@ -42,17 +46,17 @@
             </ul>
         </div>
         <div class="row weatherCards id=currentDay">
-            <div class="col mx-1"> Temp: <span id="wc1"></span> </div>
-            <div class="col mx-1"> Temp: <span id="wc2"></span> </div>
-            <div class="col mx-1"> Temp: <span id="wc3"></span> </div>
-            <div class="col mx-1"> Temp: <span id="wc4"></span> </div>
-            <div class="col mx-1"> Temp: <span id="wc5"></span> </div>
+            <div class="col mx-1"> <span id="wc1"></span> </div>
+            <div class="col mx-1"> <span id="wc2"></span> </div>
+            <div class="col mx-1"> <span id="wc3"></span> </div>
+            <div class="col mx-1"> <span id="wc4"></span> </div>
+            <div class="col mx-1"> <span id="wc5"></span> </div>
         </div>
         <div class="row justify-content-center">
-            <h3 class="searchList">Recent searches </h3>
-            <ol id="recentSearches">
-            </ol>
+            <h3 class="searchList pt-4">Recent searches </h3>
         </div>
+        <ul id="recentSearches">
+        </ul>
     </div>
     <script src="./config.js"></script>
     <script src="Assets/script.js"></script>

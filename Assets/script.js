@@ -1,4 +1,3 @@
-
 var APIkey = config.MY_KEY
 var WeatherCardsEl = document.querySelector(".weatherCards");
 var cityName = document.querySelector("#city");
@@ -13,16 +12,59 @@ var wc2Val = document.querySelector("#wc2");
 var wc3Val = document.querySelector("#wc3");
 var wc4Val = document.querySelector("#wc4");
 var wc5Val = document.querySelector("#wc5");
+var weatherEl = document.querySelector(".WC");
+var searchesEl = document.querySelector("#recentSearches");
+var buttonEl = document.querySelector("#searchBtn");
+//empty array to store city
+//parse is inverse of converted (string to array) (array to string is stringify)
+var searchArray = JSON.parse(localStorage.getItem("searches")) || [];
+console.log("searchArray", searchArray);
 
+weatherEl = moment().format("dddd, MMMM Do YYYY")
+$(".WC").text(weatherEl);
 
-async function getWeatherData() {
+function getSearches() {
+    for (let i = 0; i < searchArray.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = searchArray[i];
+        li.setAttribute("class", "city");
+        searchesEl.appendChild(li);
+    }
+
+    var cities = document.querySelectorAll(".city")
+
+    for (let i = 0; i < cities.length; i++) {
+        cities[i].addEventListener("click", function () {
+            getWeatherData(cities[i].textContent)
+        })
+    }
+}
+
+getSearches();
+buttonEl.addEventListener("click", function () {
+
+    getWeatherData(formEl.value);
+})
+
+//arrayname.includes
+//sear
+
+async function getWeatherData(citySearch) {
+    //adds the search into an array
+    //convert to string using jsonstringifer
+    // if (searchArray.includes(citySearch)) {
+    //     return
+    // }
+    searchArray.push(citySearch);
+    getSearches();
+    localStorage.setItem("searches", JSON.stringify(searchArray));
     //if there's a comma then the user has done an explicit search, otherwise put in filter for country au (e.g. melbourne, sydney)
     var city = "";
-    if (formEl.value.includes(",")) {
-        city = formEl.value;
+    if (!citySearch.includes(",")) {
+        city = citySearch;
     }
     else {
-        city = formEl.value + ",AU";
+        city = citySearch + ",AU";
     }
 
     var fivedayforecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
@@ -40,15 +82,40 @@ async function getWeatherData() {
     uviVal.textContent = oneCall.current.uvi;
     htmlContent = "";
 
-    for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
+    // function changeColour() {
 
+    // var uvi = oneCall['daily']['uvi'];
+    // if (uvi < 3) {
+    //     document.getElementById("#uv1").style.backgroundColor = "green";
+    // }
+    // if (uvi >= 3 && uvi < 6) {
+    //     document.getElementById("#uv1").style.backgroundColor = "yellow";
+    // }
+    // else if (uvi >= 6 && uvi < 8) {
+    //     document.getElementById("#uv1").style.backgroundColor = "orange";
+    // }
+    // else if (uvi > 8) {
+    //     document.getElementById("#uv1").style.backgroundColor = "red";
+    // }
+
+    // }
+
+    // changeColour();
+
+
+    for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
+        // var forecast_time = new Date(oneCall['daily'][i].dt * 1000);
         var humid = oneCall['daily'][i].humidity.toFixed(1);
         var temp = oneCall['daily'][i].temp['day'].toFixed(1);
         var wspeed = oneCall['daily'][i].wind_speed.toFixed(1);
-        var icon = "http://openweathermap.org/img/w/" + oneCall['daily'][i]['weather'][0]['icon'] + ".png";
+        var icon = "https://openweathermap.org/img/w/" + oneCall['daily'][i]['weather'][0]['icon'] + ".png";
         var iconAltText = oneCall['daily'][i]['weather'][0]['description'];
         htmlContent += `<div class="col mx-1"> <img src="${icon}" alt="${iconAltText}"/> Temp: ${temp} Windspeed ${wspeed} Humidity ${humid} <span id="wc${i}"></span> </div>`;
     }
+
+
+
+
 
     cityName.innerHTML = formEl.value;
 

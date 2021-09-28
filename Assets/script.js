@@ -52,13 +52,10 @@ buttonEl.addEventListener("click", function () {
 async function getWeatherData(citySearch) {
     //adds the search into an array
     //convert to string using jsonstringifer
-    // if (searchArray.includes(citySearch)) {
-    //     return
-    // }
-    searchArray.push(citySearch);
+    var IncludeCity = searchArray.includes(citySearch);
+    if (!IncludeCity) { searchArray.push(citySearch) };
     getSearches();
     localStorage.setItem("searches", JSON.stringify(searchArray));
-    //if there's a comma then the user has done an explicit search, otherwise put in filter for country au (e.g. melbourne, sydney)
     var city = "";
     if (!citySearch.includes(",")) {
         city = citySearch;

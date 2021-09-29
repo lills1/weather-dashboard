@@ -67,15 +67,14 @@ async function getWeatherData(citySearch) {
         city = citySearch + ",AU";
     }
 
-    if (citySearch != oneCall || fivedayforecast) {
-        cityName.innerHTML = "please enter a valid city";
-    }
-
     var fivedayforecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
         .then(response => response.json())
     console.log(fivedayforecast)
     var oneCall = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fivedayforecast.city.coord.lat}&lon=${fivedayforecast.city.coord.lon}&appid=${APIkey}&units=metric`)
         .then(response => response.json())
+    // if (citySearch != oneCall || fivedayforecast) {
+    //     cityName.innerHTML = "please enter a valid city";
+    // }
     console.log(oneCall)
     tempVal.textContent = oneCall.current.temp + " Celsius "
     feelsVal.textContent = oneCall.current.feels_like + " Celsius   "
@@ -84,35 +83,32 @@ async function getWeatherData(citySearch) {
     uviVal.textContent = oneCall.current.uvi;
     htmlContent = "";
 
-    // function changeColour() {
+    var uvi = oneCall.current.uvi;
+    console.log("uvi:" + uvi);
+    if (uvi < 3) {
+        document.getElementById("uv1").style.backgroundColor = "green";
+    }
+    if (uvi >= 3 && uvi < 6) {
+        document.getElementById("uv1").style.backgroundColor = "yellow";
+    }
+    else if (uvi >= 6 && uvi < 8) {
+        document.getElementById("uv1").style.backgroundColor = "orange";
+    }
+    else if (uvi > 8) {
+        document.getElementById("uv1").style.backgroundColor = "red";
+    }
 
-    //     var uvi = oneCall['daily']['uvi'];
-    //     if (uvi < 3) {
-    //         document.getElementById("#uv1").style.backgroundColor = "green";
-    //     }
-    //     if (uvi >= 3 && uvi < 6) {
-    //         document.getElementById("#uv1").style.backgroundColor = "yellow";
-    //     }
-    //     else if (uvi >= 6 && uvi < 8) {
-    //         document.getElementById("#uv1").style.backgroundColor = "orange";
-    //     }
-    //     else if (uvi > 8) {
-    //         document.getElementById("#uv1").style.backgroundColor = "red";
-    //     }
-
-    // }
-
-    // changeColour();
 
 
     for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
         // var forecast_time = new Date(oneCall['daily'][i].dt * 1000);
+        var DateInfo = fivedayforecast.list[i].dt_txt
         var humid = oneCall['daily'][i].humidity.toFixed(1);
         var temp = oneCall['daily'][i].temp['day'].toFixed(1);
         var wspeed = oneCall['daily'][i].wind_speed.toFixed(1);
         var icon = "https://openweathermap.org/img/w/" + oneCall['daily'][i]['weather'][0]['icon'] + ".png";
         var iconAltText = oneCall['daily'][i]['weather'][0]['description'];
-        htmlContent += `<div class="col mx-1"> <img src="${icon}" alt="${iconAltText}"/> Temp: ${temp} Windspeed ${wspeed} Humidity ${humid} <span id="wc${i}"></span> </div>`;
+        htmlContent += `<div class="col mx-1"> <img src="${icon}" alt="${iconAltText}"/> Date: ${DateInfo}Temp: ${temp} Windspeed ${wspeed} Humidity ${humid} <span id="wc${i}"></span> </div>`;
     }
 
     cityName.innerHTML = formEl.value;

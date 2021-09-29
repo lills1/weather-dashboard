@@ -4,7 +4,7 @@
 
 .showCity{
     border-style: dashed;
-    margin:5rem;
+    margin:4rem;
     /* backgrounds-color: lightskyblue; */
 }
 
@@ -17,7 +17,14 @@
     border-radius:15px;
     /* border-style:solid; */
 }
-.searchHist{
-    margin:5rem;
+
+#recentSearches{
+    display:inline-block;
+  margin-left:31rem;
+  cursor: pointer;
 }
 
+input{
+    text-align: center;
+ margin: -6px -10px 12px; 
+}

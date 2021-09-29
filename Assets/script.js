@@ -15,15 +15,18 @@ var wc5Val = document.querySelector("#wc5");
 var weatherEl = document.querySelector(".WC");
 var searchesEl = document.querySelector("#recentSearches");
 var buttonEl = document.querySelector("#searchBtn");
+var day = document.getElementsByClassName("day");
+
 //empty array to store city
 //parse is inverse of converted (string to array) (array to string is stringify)
 var searchArray = JSON.parse(localStorage.getItem("searches")) || [];
 console.log("searchArray", searchArray);
 
-weatherEl = moment().format("dddd, MMMM Do YYYY")
-$(".WC").text(weatherEl);
+day = moment().format("dddd, MMMM Do YYYY")
+$(".day").text(day);
 
 function getSearches() {
+    searchesEl.textContent = "";
     for (let i = 0; i < searchArray.length; i++) {
         var li = document.createElement("li");
         li.textContent = searchArray[i];
@@ -109,10 +112,6 @@ async function getWeatherData(citySearch) {
         var iconAltText = oneCall['daily'][i]['weather'][0]['description'];
         htmlContent += `<div class="col mx-1"> <img src="${icon}" alt="${iconAltText}"/> Temp: ${temp} Windspeed ${wspeed} Humidity ${humid} <span id="wc${i}"></span> </div>`;
     }
-
-
-
-
 
     cityName.innerHTML = formEl.value;
 

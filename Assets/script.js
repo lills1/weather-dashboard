@@ -67,36 +67,38 @@ async function getWeatherData(citySearch) {
         city = citySearch + ",AU";
     }
 
+    if (citySearch != oneCall || fivedayforecast) {
+        cityName.innerHTML = "please enter a valid city";
+    }
+
     var fivedayforecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
         .then(response => response.json())
     console.log(fivedayforecast)
     var oneCall = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fivedayforecast.city.coord.lat}&lon=${fivedayforecast.city.coord.lon}&appid=${APIkey}&units=metric`)
         .then(response => response.json())
     console.log(oneCall)
-    tempVal.textContent = oneCall.current.temp + " Celsius"
-    feelsVal.textContent = oneCall.current.feels_like + " Celsius"
-    // maxTempval.textContent = oneCall.current.max + " Celsius"
-    // minTempval.textContent = oneCall.current.min + " Celsius"
-    humidVal.textContent = oneCall.current.humidity
-    windspVal.textContent = oneCall.current.wind_speed
+    tempVal.textContent = oneCall.current.temp + " Celsius "
+    feelsVal.textContent = oneCall.current.feels_like + " Celsius   "
+    humidVal.textContent = oneCall.current.humidity + " % "
+    windspVal.textContent = oneCall.current.wind_speed + " KM/H "
     uviVal.textContent = oneCall.current.uvi;
     htmlContent = "";
 
     // function changeColour() {
 
-    // var uvi = oneCall['daily']['uvi'];
-    // if (uvi < 3) {
-    //     document.getElementById("#uv1").style.backgroundColor = "green";
-    // }
-    // if (uvi >= 3 && uvi < 6) {
-    //     document.getElementById("#uv1").style.backgroundColor = "yellow";
-    // }
-    // else if (uvi >= 6 && uvi < 8) {
-    //     document.getElementById("#uv1").style.backgroundColor = "orange";
-    // }
-    // else if (uvi > 8) {
-    //     document.getElementById("#uv1").style.backgroundColor = "red";
-    // }
+    //     var uvi = oneCall['daily']['uvi'];
+    //     if (uvi < 3) {
+    //         document.getElementById("#uv1").style.backgroundColor = "green";
+    //     }
+    //     if (uvi >= 3 && uvi < 6) {
+    //         document.getElementById("#uv1").style.backgroundColor = "yellow";
+    //     }
+    //     else if (uvi >= 6 && uvi < 8) {
+    //         document.getElementById("#uv1").style.backgroundColor = "orange";
+    //     }
+    //     else if (uvi > 8) {
+    //         document.getElementById("#uv1").style.backgroundColor = "red";
+    //     }
 
     // }
 

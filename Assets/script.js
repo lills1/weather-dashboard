@@ -1,4 +1,4 @@
-var APIkey = config.MY_KEY
+var APIkey = "b198a2e8751d2d7c4dce9563a7e1f56a";
 var WeatherCardsEl = document.querySelector(".weatherCards");
 var cityName = document.querySelector("#city");
 var formEl = document.querySelector("#formInput");

@@ -16,16 +16,24 @@ var weatherEl = document.querySelector(".WC");
 var searchesEl = document.querySelector("#recentSearches");
 var buttonEl = document.querySelector("#searchBtn");
 var day = document.getElementsByClassName("day");
+var currentTime = document.querySelector("#cDay");
 
 //empty array to store city
 //parse is inverse of converted (string to array) (array to string is stringify)
 var searchArray = JSON.parse(localStorage.getItem("searches")) || [];
 console.log("searchArray", searchArray);
 
+function timeDisplay() {
+    currentTime = moment().format("hh:mm:ss");
+    $("#cDay").text(currentTime);
+    console.log(currentTime);
+}
+
 day = moment().format("dddd, MMMM Do YYYY")
 $(".day").text(day);
+setInterval(timeDisplay, 1000);
 
-var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
 var Months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Dec"];
 
 
@@ -126,13 +134,17 @@ async function getWeatherData(citySearch) {
                                 console.log("uvi:" + uvi);
                                 if (uvi < 3) {
                                     document.getElementById("uv1").style.backgroundColor = "green";
+                                    document.getElementById("uv1").style.color = "black";
                                 }
                                 if (uvi >= 3 && uvi < 6) {
                                     document.getElementById("uv1").style.backgroundColor = "yellow";
+                                    document.getElementById("uv1").style.color = "black";
                                 } else if (uvi >= 6 && uvi < 8) {
                                     document.getElementById("uv1").style.backgroundColor = "orange";
+                                    document.getElementById("uv1").style.color = "black";
                                 } else if (uvi > 8) {
                                     document.getElementById("uv1").style.backgroundColor = "red";
+                                    document.getElementById("uv1").style.color = "black";
                                 }
 
                                 for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {

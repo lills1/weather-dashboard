@@ -58,6 +58,8 @@ function getSearches() {
     for (let i = 0; i < cities.length; i++) {
         cities[i].addEventListener("click", function () {
             getWeatherData(cities[i].textContent)
+            cityName.innerHTML = "";
+
         })
     }
 }

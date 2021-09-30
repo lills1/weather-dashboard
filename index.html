@@ -11,17 +11,32 @@
 </head>
 
 <body>
-    <header class="jumbotron">
+    <header>
         <div class="row justify-content-center">
             <h1 class="display-3">Weather app</h1>
         </div>
         <div class="lead row justify-content-center">
-            <p class="day"> </p>
+            <div>
+                <p class="day"></p>
+                <p id="cDay">00:00:00</p>
+            </div>
     </header>
 
     <div class="container">
-        <div class=" h2 justify-content-left">
-            <p>Search for a city</p>
+        <div class=" h2 justify-content-center">
+            <p id="search">Search for a city</p>
+        </div>
+        <div class="col-sm">
+            <div class="mx-auto w-25 justify-content-right showCity id=showCity">
+                <div class=" h3 col justify-content-right" id="city"> </div>
+                <ul>
+                    <li> Current temp : <span id="temp"></span></li>
+                    <li> Feels like : <span id="feelsLike"></span></li>
+                    <li>Humidity : <span id="humid"></span></li>
+                    <li>Wind Speed : <span id="windsp"></span></li>
+                    <li id="uv1">UV Index : <span id="uvi"></span></li>
+                </ul>
+            </div>
         </div>
         <div class="row">
             <div class="form-group">
@@ -37,20 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
-                <div class=" h3 col justify-content-right" id="city"> </div>
-                <div class="mx-auto w-25 showCity id=showCity">
-                    <ul>
-                        <li> Current temp : <span id="temp"></span></li>
-                        <li> Feels like : <span id="feelsLike"></span></li>
-                        <li>Humidity : <span id="humid"></span></li>
-                        <li>Wind Speed : <span id="windsp"></span></li>
-                        <li id="uv1">UV Index : <span id="uvi"></span></li>
-                    </ul>
-                </div>
-            </div>
         </div>
-
 
         <div class="row weatherCards id=currentDay">
             <div class="col mx-1"> <span id="wc1"></span> </div>
@@ -64,7 +66,6 @@
         </div>
         <ul id="recentSearches">
         </ul>
-    </div> -->
     </div>
     <script src="./config.js"></script>
     <script src="Assets/script.js"></script>

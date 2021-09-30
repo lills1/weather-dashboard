@@ -16,6 +16,7 @@ You can also clone the repo to your device through:
 <li> Server-side API's</li>
 
 <h1> Preview </h1>
+<img src=">
 
 <h1> Usage</h1>
 The current date and time is displayed in the header. The user can enter a city using the search input to the left of the screen. the current temperature, humidity, wind speed and UVI index displays in the box next to it. The UVI index is coloured according to severerity; 0-3 is green for low, 3.1-6 is yellow for moderate, 6.1-8 is orange for high, and over 8 is red for severe.

@@ -47,16 +47,15 @@ function getSearches() {
     }
 
     var cities = document.querySelectorAll(".city")
-
     for (let i = 0; i < cities.length; i++) {
         cities[i].addEventListener("click", function () {
             getWeatherData(cities[i].textContent)
         })
     }
 }
-
 getSearches();
 buttonEl.addEventListener("click", function () {
+
 
     getWeatherData(formEl.value);
 })
@@ -68,9 +67,9 @@ async function getWeatherData(citySearch) {
     //adds the search into an array
     //convert to string using jsonstringifer
     var IncludeCity = searchArray.includes(citySearch);
-    if (!IncludeCity) {
-        searchArray.push(citySearch)
-    };
+    // if (!IncludeCity) {
+    //     searchArray.push(citySearch)
+    // };
     getSearches();
     localStorage.setItem("searches", JSON.stringify(searchArray));
     var city = "";
@@ -92,13 +91,16 @@ async function getWeatherData(citySearch) {
             console.log(response.statusText); // OK
             // Flag error if http status != 200
             if (response.status != 200) {
-                searchesEl.textContent = "";
                 cityName.innerHTML = "please enter a valid city";
                 console.log("error!!!!!!!!");
             }
             // only process if the http status is 200
             if (response.status == 200)
                 response.json().then(function (fivedayforecast) {
+                    if (!IncludeCity) {
+                        searchArray.push(citySearch);
+                        getSearches();
+                    };
 
                     fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,hourly,alerts&lat=${fivedayforecast.city.coord.lat}&lon=${fivedayforecast.city.coord.lon}&appid=${APIkey}&units=metric`)
                         .then(response => {
@@ -133,8 +135,6 @@ async function getWeatherData(citySearch) {
                                     document.getElementById("uv1").style.backgroundColor = "red";
                                 }
 
-
-
                                 for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
                                     // var forecast_time = new Date(oneCall['daily'][i].dt * 1000);
                                     // var date = document.createElement("li");
@@ -166,7 +166,7 @@ async function getWeatherData(citySearch) {
         })// close success of forecast
         .catch(error => {
             cityName.innerHTML = "please enter a valid city";
-            console.log("error!!!!!!!!");
+            console.log(error);
             // handle the error
         });
     //temp, wind speed and h

@@ -20,7 +20,59 @@
     </header>
 
     <div class="container">
-        <div class=" h2 row justify-content-center">
+        <div class=" h2 justify-content-left">
+            <p>Search for a city</p>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm">
+                    <div class="col-xs-4">
+                        <input class="form-control" id=formInput placeholder="I want the weather of...">
+                    </div>
+                    <div class=" text-left">
+                        <small class="form-text text-muted">Your location isn't shared with anyone else</small>
+                    </div>
+                    <div class=" pt-3">
+                        <button type="submit" id="searchBtn" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class=" h3 col justify-content-right" id="city"> </div>
+                <div class="mx-auto w-25 showCity id=showCity">
+                    <ul>
+                        <li> Current temp : <span id="temp"></span></li>
+                        <li> Feels like : <span id="feelsLike"></span></li>
+                        <li>Humidity : <span id="humid"></span></li>
+                        <li>Wind Speed : <span id="windsp"></span></li>
+                        <li id="uv1">UV Index : <span id="uvi"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row weatherCards id=currentDay">
+            <div class="col mx-1"> <span id="wc1"></span> </div>
+            <div class="col mx-1"> <span id="wc2"></span> </div>
+            <div class="col mx-1"> <span id="wc3"></span> </div>
+            <div class="col mx-1"> <span id="wc4"></span> </div>
+            <div class="col mx-1"> <span id="wc5"></span> </div>
+        </div>
+        <div class="row justify-content-center">
+            <h3 class="searchList pt-4">Recent searches </h3>
+        </div>
+        <ul id="recentSearches">
+        </ul>
+    </div> -->
+    </div>
+    <script src="./config.js"></script>
+    <script src="Assets/script.js"></script>
+</body>
+
+</html>
+
+<!-- <div class=" h2 row justify-content-center">
             <p>Search for a city</p>
         </div>
         <div class="form-group">
@@ -41,22 +93,4 @@
                 <li>Wind Speed : <span id="windsp"></span></li>
                 <li id="uv1">UV Index : <span id="uvi"></span></li>
             </ul>
-        </div>
-        <div class="row weatherCards id=currentDay">
-            <div class="col mx-1"> <span id="wc1"></span> </div>
-            <div class="col mx-1"> <span id="wc2"></span> </div>
-            <div class="col mx-1"> <span id="wc3"></span> </div>
-            <div class="col mx-1"> <span id="wc4"></span> </div>
-            <div class="col mx-1"> <span id="wc5"></span> </div>
-        </div>
-        <div class="row justify-content-center">
-            <h3 class="searchList pt-4">Recent searches </h3>
-        </div>
-        <ul id="recentSearches">
-        </ul>
-    </div>
-    <script src="./config.js"></script>
-    <script src="Assets/script.js"></script>
-</body>
-
-</html>
+        </div> -->

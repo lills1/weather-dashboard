@@ -68,16 +68,12 @@ buttonEl.addEventListener("click", function () {
     getWeatherData(formEl.value);
 })
 
-//arrayname.includes
-//sear
 
 async function getWeatherData(citySearch) {
     //adds the search into an array
     //convert to string using jsonstringifer
     var IncludeCity = searchArray.includes(citySearch);
-    // if (!IncludeCity) {
-    //     searchArray.push(citySearch)
-    // };
+
     getSearches();
     localStorage.setItem("searches", JSON.stringify(searchArray));
     var city = "";
@@ -86,9 +82,6 @@ async function getWeatherData(citySearch) {
     } else {
         city = citySearch + ",AU";
     }
-
-    // var fivedayforecast = await fetch (`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
-    // .then(response => response.json())
 
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
@@ -114,13 +107,6 @@ async function getWeatherData(citySearch) {
                         .then(response => {
                             // handle the response
                             response.json().then(function (oneCall) {
-
-                                // console.log(fivedayforecast)
-                                // var oneCall = await fetch(`https://api.openweathermap.org/data/2.5/onecall?exclude=minutely,hourly,alerts&lat=${fivedayforecast.city.coord.lat}&lon=${fivedayforecast.city.coord.lon}&appid=${APIkey}&units=metric`)
-                                //     .then(response => response.json())
-                                // if (citySearch != oneCall || fivedayforecast) {
-                                //     cityName.innerHTML = "please enter a valid city";
-                                // }
 
                                 console.log(oneCall)
                                 tempVal.textContent = oneCall.current.temp + " Celsius "
@@ -148,10 +134,6 @@ async function getWeatherData(citySearch) {
                                 }
 
                                 for (var i = 0; i < oneCall['daily'].length & i < 5; i++) {
-                                    // var forecast_time = new Date(oneCall['daily'][i].dt * 1000);
-                                    // var date = document.createElement("li");
-                                    // var DateInfo = fivedayforecast.list[i].dt_txt;
-                                    // date.textContent = "Date: " + DateInfo[0];
                                     var forecasetTime = new Date(oneCall['daily'][i].dt * 1000);
                                     var dateInfo = format_date(forecasetTime);
                                     var humid = oneCall['daily'][i].humidity.toFixed(1);
@@ -179,31 +161,11 @@ async function getWeatherData(citySearch) {
         .catch(error => {
             cityName.innerHTML = "please enter a valid city";
             console.log(error);
-            // handle the error
+
         });
-    //temp, wind speed and h
 
-
-    // wc2Val.textContent = oneCall['daily'][1].temp['day'];
-    // wc3Val.textContent = oneCall['daily'][2].temp['day'];
-    // wc4Val.textContent = oneCall['daily'][3].temp['day'];
-    // wc5Val.textContent = oneCall['daily'][4].temp['day'];
-
-    // wc2Val.textContent = fivedayforecast.current.humidity
-
-    // windspVal.textContent = oneCall.current.wind_speed
-    // uviVal.textContent = oneCall.current.uvi
 }
 
 
 
 
-                            //json
-                            //import config.js in script.js
-                            //creat webform
-                            //onsubmit extract search
-                            //call api to get data on city
-                            //loop through json and build 5 day forecast with date time, max,min
-                            //add search to local storage
-                            //update recent searches
-                            //bonus: tally how many times a city has been searched, keep max of 20 items and remove least used

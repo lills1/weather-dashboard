@@ -1,11 +1,27 @@
-#formInput{
-    display:inline;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+body {
+height: 100%;
+background: url(../Assets/noaa-0ETSZYPjvDo-unsplash.jpg) no-repeat fixed center;
+background-size: cover;
+}
+
+header{
+    height:200px;
+    color:white;
+    border-bottom-style:solid;
+}
+
+.container {
+    color:white
 }
 
 .showCity{
-    border-style: dashed;
-    margin:4rem;
-    /* backgrounds-color: lightskyblue; */
+    border-style: solid;
+    border-color: grey;
+   float:right;
 }
 
 .weatherCards{
@@ -13,9 +29,10 @@
 }
 
 .weatherCards div{
-    background-color:lightblue;
+    background-color:rgb(128, 128, 128,0.5);
     border-radius:15px;
-    /* border-style:solid; */
+    display:flex;
+    color:black;
 }
 
 #recentSearches{
@@ -28,3 +45,24 @@ input{
     text-align: center;
  margin: -6px -10px 12px; 
 }
+.colmx-1{
+    justify-content:space-between;
+    display:block;
+}
+
+.searchList{
+    margin-top:2rem;
+}
+.form-group{
+    margin-top:1rem;
+    padding-bottom:7rem;
+}
+
+#search{
+    margin-top:4rem;
+}
+
+#cDay{
+    text-align: center;
+}
+

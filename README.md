@@ -4,8 +4,8 @@
 This project was built for my weekly assignment, utilising the newly learned concepts of server-side API's, whilst simultaneously reinstating prior knowledge primarily related to moment.js, bootstrap, and javascript.
 
 <h1> Access and installation</h1>
-This project can be accessed through the following deployed link: </br>
-You can also clone the repo to your device through:
+This project can be accessed through the following deployed link: https://lills1.github.io/weather-dashboard/ </br>
+You can also clone the repo to your device through: git@github.com:lills1/weather-dashboard.git
 
 <h1> Technologies used</h1>
 <ul>
